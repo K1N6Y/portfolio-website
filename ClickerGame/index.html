@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <title>Clicker Game</title>
+</head>
+<body>
+    <h1 id="message"></h1>
+
+    <!-- Top - Left -->
+    <div class="t-left">
+        <button id="clicker"></button>
+
+        <div class="item-showcase">
+            <div class="tooltip">
+                <img src="pics/first-upgrade.png" alt="Number of Tier 1's">
+                <span class="tooltiptext">You have: <p id="n1">0</p> Tier 1s</span>
+            </div>
+            <div class="tooltip">
+                <img src="pics/second-upgrade.png" alt="Number of Tier 2's">
+                <span class="tooltiptext">You have: <p id="n2">0</p> Tier 2s</span>
+            </div>
+            <div class="tooltip">
+                <img src="pics/third-upgrade.png" alt="Number of Tier 3's">
+                <span class="tooltiptext">You have: <p id="n3">0</p> Tier 3s</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top - Right -->
+    <div class="t-right">
+        <h1 id="title">Achievements</h1>
+        <div id="underline"></div>
+
+        <!-- Achievements -->
+        <img id="firstAchievement" src="pics/achievements/rank-1.png" alt="First Achivement" draggable="false">
+        <img id="secondAchievement" src="pics/achievements/rank-2.png" alt="Second Achivement" draggable="false">
+        <img id="thirdAchievement" src="pics/achievements/rank-3.png" alt="Third Achivement" draggable="false">
+    </div>
+
+    <!-- Bottom - Left -->
+    <div class="b-left">
+        <h1 id="title">Stats</h1>
+        <div id="underline"></div>
+        <div class="show-area" id="bl-drc">
+            <p id="stat-text">You have: <span id="money">0</span></p>
+            <p id="stat-text">Current Click Power: <span id="clickPower">1</span></p>
+            <p id="stat-text">Current Auto Clicks: <span id="autoClicks">0</span> p/s</p>
+            <p id="stat-text">Current Achievements: <span id="currentAchivements">0</span>/3</p>
+        </div>
+    </div>
+
+    <!-- Bottom - Right -->
+    <div class="b-right">
+        <h1 id="title">Shop</h1>
+        <div id="underline"></div>
+
+         <!-- SHOP -->
+        <div class="show-area">
+            <div class="shop-item" id="t1-shop" title="Tier 1 Upgrade">
+                <img src="pics/first-upgrade.png" alt="Upgrade" draggable="false">
+                <p class="prices" id="priceT1">5</p>
+            </div>
+            <div class="shop-item" id="t2-shop" title="Tier 2 Upgrade">
+                <img src="pics/second-upgrade.png" alt="Upgrade" draggable="false">
+                <p class="prices" id="priceT2">50</p>
+            </div>
+            <div class="shop-item" id="t3-shop" title="Tier 3 Upgrade">
+                <img src="pics/third-upgrade.png" alt="Upgrade" draggable="false">
+                <p class="prices" id="priceT3">0</p>
+            </div>
+            <div class="shop-item" id="t4-shop" title="Click Hit Upgrade">
+                <img src="pics/upgrade.png" alt="Upgrade" draggable="false">
+                <p class="prices" id="priceT4">10</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Credits -->
+    <p id="author">KiNG</p>
+
+    <!-- JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mines</title>
+    <script src="https://kit.fontawesome.com/e5fc155488.js"></script>
+    <style>
+        @font-face {
+            font-family: "game";
+            src: url(font/Blinker-Regular.ttf);
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "game";
+        }
+
+        body {
+            background: radial-gradient(circle at 50% 60%,rgba(149,176,249,1), rgba(149,176,249,0) 50%), radial-gradient(circle at 10% 10%,rgba(114,226,253,1), rgba(114,226,253,0) 50%), radial-gradient(circle at 90% 10%,rgba(184,150,255,1), rgba(184,150,255,0) 50%), radial-gradient(circle at 90% 90%,rgba(86,207,210,1), rgba(86,207,210,0) 50%), radial-gradient(circle at 10% 90%,rgba(168,112,253,1), rgba(168,112,253,0) 50%) ;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .tbitem {
+            width: 20%;
+            margin: auto;
+            background: #fff;
+            border: 1px solid #e6e6e6;
+            margin-top: 10%;
+            padding-bottom: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #fff;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            margin-top: 5%;
+            white-space: pre-wrap;
+            max-width: 90px;
+            word-wrap: break-word;
+        }
+
+        table tr td {
+            padding: 50px;
+            border: 2px solid #e6e6e6;
+            cursor: pointer;
+            font-size: 20px;
+            color: #999999;
+        }
+
+        table tr td:hover {
+            background: #f9f9f9;
+            color: #737373;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 5%;
+            font-size: 30px;
+            color: #737373;
+            text-shadow: 0px 0px 2px #999;
+        }
+
+        #overlay {
+            position: fixed;
+            display: none;
+            width: 100%;
+            height: 100%;
+            top: 0; 
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 2;
+            cursor: pointer;
+            opacity: 0.3;
+        }
+
+        .popup {
+            width: 25%;
+            position: fixed;
+            left: 75%;
+            margin-left: -37.5%;
+            text-align: center;
+            margin-top: 5%;
+            padding: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay"></div>
+
+    <div class="popup" id="popupLose" style="border: 2px solid #888; border-radius: 20px; background: rgba(255, 255, 255, 0.5); z-index: 5;">
+        <h1 style="font-size: 60px; color: #ff0000; text-shadow: 0px 0px 2px rgb(255, 90, 90); padding-bottom: 5%; cursor: default;">YOU LOSE!</h1>
+        <button onclick="refresh()" id="tryAgain" style="cursor: pointer; outline: none; background: #e6e6e6; color: #333; width: 200px; height: 50px; margin-top: 2%; border-radius: 5px; border: 1px solid #111;">Try Again</button>
+    </div>
+
+    <div class="popup" id="popupWin" style="border: 2px solid #888; border-radius: 20px; background: rgba(255, 255, 255, 0.5); z-index: 5;">
+        <h1 style="font-size: 60px; color: #33cc33; text-shadow: 0px 0px 2px #85e085; padding-bottom: 5%; cursor: default;">YOU WIN!</h1>
+        <button onclick="refresh()" id="tryAgain" style="cursor: pointer; outline: none; background: #e6e6e6; color: #333; width: 200px; height: 50px; margin-top: 2%; border-radius: 5px; border: 1px solid #111;">Play Again</button>
+    </div> 
+        
+    <div class="tbitem">
+        <p>MINEFIELD</p>
+        <table>
+            <tr>
+                <td class="tb1" id="1"><i class="far fa-question-circle"></i></td>
+                <td class="tb2" id="2"><i class="far fa-question-circle"></i></td> 
+                <td class="tb3" id="3"><i class="far fa-question-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="tb4" id="4"><i class="far fa-question-circle"></i></td>
+                <td class="tb5" id="5"><i class="far fa-question-circle"></i></td> 
+                <td class="tb6" id="6"><i class="far fa-question-circle"></i></td>
+            </tr>
+            <tr>
+                <td class="tb7" id="7"><i class="far fa-question-circle"></i></td>
+                <td class="tb8" id="8"><i class="far fa-question-circle"></i></td> 
+                <td class="tb9" id="9"><i class="far fa-question-circle"></i></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <script>
+        var table1 = document.getElementById("1");
+        var table2 = document.getElementById("2");
+        var table3 = document.getElementById("3");
+        var table4 = document.getElementById("4");
+        var table5 = document.getElementById("5");
+        var table6 = document.getElementById("6");
+        var table7 = document.getElementById("7");
+        var table8 = document.getElementById("8");
+        var table9 = document.getElementById("9");
+
+        var tbClicks = 0;
+
+        table1.onclick = function() {
+            table1.style.background = "#8cd98c";
+            table1.style.color = "#fff";
+            table1.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table2.onclick = function() {
+            table2.style.background = "#8cd98c";
+            table2.style.color = "#fff";
+            table2.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table3.onclick = function() {
+            table3.style.background = "#8cd98c";
+            table3.style.color = "#fff";
+            table3.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table4.onclick = function() {
+            table4.style.background = "#8cd98c";
+            table4.style.color = "#fff";
+            table4.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table5.onclick = function() {
+            table5.style.background = "#8cd98c";
+            table5.style.color = "#fff";
+            table5.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table5.onclick = function() {
+            table5.style.background = "#8cd98c";
+            table5.style.color = "#fff";
+            table5.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table6.onclick = function() {
+            table6.style.background = "#8cd98c";
+            table6.style.color = "#fff";
+            table6.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table7.onclick = function() {
+            table7.style.background = "#8cd98c";
+            table7.style.color = "#fff";
+            table7.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table8.onclick = function() {
+            table8.style.background = "#8cd98c";
+            table8.style.color = "#fff";
+            table8.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        table9.onclick = function() {
+            table9.style.background = "#8cd98c";
+            table9.style.color = "#fff";
+            table9.innerHTML = "<i class='far fa-check-circle'></i>";
+            tbClicks++;
+            console.log(tbClicks);
+
+            if (tbClicks == 8) {
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("popupWin").style.display = "block";
+            }
+        }
+
+        function refresh() {
+            location.reload(true);
+        }
+
+        var table = [table1, table2, table3, table4, table5, table6, table7, table8, table9];
+
+        var tableRandom = table[Math.floor(Math.random() * table.length)];
+
+        function removeElement(table, elem) {
+            var index = table.indexOf(elem);
+            if (index > -1) {
+                table.splice(index, 1);
+            }
+        }
+
+        removeElement(table, tableRandom);
+
+        // console.log(table) // REMOVE COMMENT TO CHEAT!
+        
+        tableRandom.onclick = function() {
+            tableRandom.innerHTML = "<i class='fas fa-bomb'></i>";
+            tableRandom.style.background = "#ff8080";
+            tableRandom.style.color = "#fff";
+            document.createElement("div");
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popupLose").style.display = "block";
+        }
+    </script>
+</body>
+</html>

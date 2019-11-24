@@ -1,0 +1,281 @@
+/* GLOBALS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: #F1F1F1;
+    color: #707070;
+    scroll-snap-type: y proximity;
+    overflow-y: scroll;
+    scroll-padding-top: 20px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* LANDING PAGE */
+
+.landing {
+    width: 100%;
+    height: 100vh;
+    background: url("../pics/slider-test.jpg") no-repeat 50% 50%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+}
+
+.landing > .landing-inner {
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin-bottom: 320px;
+}
+
+.landing > .landing-inner > .landing-content > h1 {
+    font-size: 70px;
+    color: #fff;
+    text-shadow: 0 5px 6px #4E4E4E;
+    padding-bottom: 20px;
+}
+
+.landing > .landing-inner > .landing-content > a {
+    font-size: 25px;
+    text-decoration: none;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding: 5px;
+    color: #fff;
+}
+
+.landing > .landing-inner > .landing-content > a > span {
+    font-size: 20px;
+    padding: 0 10px 0 10px;
+}
+
+.landing > .landing-inner > .landing-content > a:hover > span > i {
+    transform: rotate(90deg);
+    transition: 0.4s ease-out;
+}
+
+/* ### MAIN CONTENT ### */
+
+/* ABOUT US */
+
+#content {
+    width: 100%;
+    height: 2px;
+    background: #4E4E4E;
+    scroll-snap-align: start;
+}
+
+.about-us {
+    text-align: center;
+    margin-top: 120px;
+    height: 400px;
+}
+
+.about-us > h1 {
+    font-size: 34px;
+}
+
+.about-us > h1 > span {
+    color: #000;
+}
+
+.about-us-content {
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+    font-size: 20px;
+}
+
+/* GRID */
+
+.grid {
+    height: 1070px;
+    width: 85%;
+    margin: auto;
+    scroll-snap-align: start;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+  
+.row-item {
+    height: 446px;
+    width: 50%;
+}
+
+#row-pic-1 {
+    background: url("../pics/section1.jpg") no-repeat 100% 100%;
+}
+
+#row-pic-2 {
+    background: url("../pics/section2.jpg") no-repeat 0% 0%;
+}
+
+#row-text > p {
+    font-size: 25px;
+    width: 80%;
+    margin: auto;
+    margin-top: 60px;
+}
+
+/* BLOG */
+
+.blog {
+    text-align: center;
+    height: 420px;
+}
+
+.blog > h1 {
+    font-size: 34px;
+    padding-bottom: 30px;
+}
+
+.blog > h1 > span {
+    color: #000;
+}
+
+.blog-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.blog-item {
+    width: 300px;
+    height: 200px;
+    margin: 20px;
+    text-align: left;
+    opacity: 0.8;
+}
+
+a > .blog-item:hover {
+    opacity: 1;
+    transition: 0.2s ease-out;
+}
+
+a > .blog-item > p {
+    color: #707070;
+    text-decoration: none !important;
+}
+
+#blog-image-1 {
+    width: 100%;
+    height: 153px;
+    border: 1px solid #000;
+    background: url("../pics/blog1.jpg") no-repeat;
+}
+
+#blog-image-2 {
+    width: 100%;
+    height: 153px;
+    border: 1px solid #000;
+    background: url("../pics/blog2.jpg") no-repeat;
+}
+
+#blog-image-3 {
+    width: 100%;
+    height: 153px;
+    border: 1px solid #000;
+    background: url("../pics/blog3.jpg") no-repeat;
+}
+
+#blog-image-4 {
+    width: 100%;
+    height: 153px;
+    border: 1px solid #000;
+    background: url("../pics/blog4.jpg") no-repeat;
+}
+
+.blog-title {
+    font-size: 25px;
+    padding: 10px 0 10px 0;
+}
+
+.blog-date {
+    font-size: 10px;
+}
+
+/* ### FOOTER ### */
+
+.footer {
+    height: 840px;
+    width: 100%;
+}
+
+/* CONTACT */
+
+.contact {
+    height: 640px;
+    width: 100%;
+    background: #414141;
+    border: #707070;
+}
+
+.contact > h1 {
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 34px;
+}
+
+form {
+    width: 40%;
+    height: auto;
+    margin: auto;
+}
+
+form > input {
+    font-size: 18px;
+}
+
+textarea {
+    resize: none;
+    font-size: 18px;
+    padding: 10px;
+}
+
+#contact-top {
+    width: 40%;
+    height: auto;
+    padding: 10px;
+}
+
+#contact-subject {
+    width: 100%;
+    padding: 10px;
+}
+
+#contact-message {
+    width: 100%;
+}
+
+/* BOTTOM */
+
+.bottom {
+    width: 100%;
+    height: 200px;
+    background: #1C1C1C;
+    border-top: 1px solid #707070
+}
